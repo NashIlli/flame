@@ -279,7 +279,7 @@ game.add(
 Renders given `dart:ui` image within the particle tree.
 
 ```dart
-// During game initialisation
+// During game initialization
 await Flame.images.loadAll(const [
   'image.png',
 ]);
@@ -300,6 +300,26 @@ game.add(
 ```
 
 
+## ScalingParticle
+
+Scales the child `Particle` between `1` and `to` during its lifespan.
+
+```dart
+game.add(
+  ParticleSystemComponent(
+    particle: ScalingParticle(
+      lifespan: 2,
+      to: 0,
+      child: CircleParticle(
+        radius: 2.0,
+        paint: Paint()..color = Colors.red,
+      )
+    );
+  ),
+);
+```
+
+
 ## SpriteAnimationParticle
 
 A `Particle` which embeds a `SpriteAnimation`.
@@ -308,7 +328,7 @@ it's fully played during the `Particle` lifespan. It's possible to override this
 `alignAnimationTime` argument.
 
 ```dart
-final spritesheet = SpriteSheet(
+final spriteSheet = SpriteSheet(
   image: yourSpriteSheetImage,
   srcSize: Vector2.all(16.0),
 );
@@ -316,7 +336,7 @@ final spritesheet = SpriteSheet(
 game.add(
   ParticleSystemComponent(
     particle: SpriteAnimationParticle(
-      animation: spritesheet.createAnimation(0, stepTime: 0.1),
+      animation: spriteSheet.createAnimation(0, stepTime: 0.1),
     );
   ),
 );

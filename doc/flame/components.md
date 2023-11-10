@@ -189,6 +189,28 @@ that they will appear in the children list in the same order as they were
 scheduled for addition.
 
 
+### Access to the World from a Component
+
+If a component that has a `World` as an ancestor and requires access to that `World` object, one can
+use the `HasWorldReference` mixin.
+
+Example:
+
+```dart
+class MyComponent extends Component with HasWorldReference<MyWorld>,
+    TapCallbacks {
+  @override
+  void onTapDown(TapDownEvent info) {
+    // world is of type MyWorld
+    world.add(AnotherComponent());
+  }
+}
+```
+
+If you try to access `world` from a component that doesn't have a `World`
+ancestor of the correct type an assertion error will be thrown.
+
+
 ### Ensuring a component has a given parent
 
 When a component requires to be added to a specific parent type the
@@ -339,6 +361,12 @@ void onDragUpdate(DragUpdateInfo info) {
 
 
 ### PositionType
+
+```{note}
+If you are using the `CameraComponent` you should not use `PositionType`, but
+instead adding your components directly to the viewport for example if you
+want to use them as a HUD.
+```
 
 If you want to create a HUD (Head-up display) or another component that isn't positioned in relation
 to the game coordinates, you can change the `PositionType` of the component.
@@ -807,6 +835,44 @@ class ButtonComponent extends SpriteGroupComponent<ButtonState>
 
   // tap methods handler omitted...
 }
+```
+
+
+## SpawnComponent
+
+This component is a non-visual component that spawns other components inside of the parent of the
+`SpawnComponent`. It's great if you for example want to spawn enemies or power-ups randomly within
+an area.
+
+The `SpawnComponent` takes a factory function that it uses to create new components and an area
+where the components should be spawned within (or along the edges of).
+
+For the area, you can use the `Circle`, `Rectangle` or `Polygon` class, and if you want to only
+spawn components along the edges of the shape set the `within` argument to false (defaults to true).
+
+This would for example spawn new components of the type `MyComponent` every 0.5 seconds randomly
+within the defined circle:
+
+```dart
+SpawnComponent(
+  factory: () => MyComponent(size: Vector2(10, 20)),
+  period: 0.5,
+  area: Circle(Vector2(100, 200), 150),
+);
+```
+
+If you don't want the spawning rate to be static, you can use the `SpawnComponent.periodRange`
+constructor with the `minPeriod` and `maxPeriod` arguments instead.
+In the following example the component would be spawned randomly within the circle and the time
+between each new spawned component is between 0.5 to 10 seconds.
+
+```dart
+SpawnComponent.periodRange(
+  factory: () => MyComponent(size: Vector2(10, 20)),
+  minPeriod: 0.5,
+  maxPeriod: 10,
+  area: Circle(Vector2(100, 200), 150),
+);
 ```
 
 

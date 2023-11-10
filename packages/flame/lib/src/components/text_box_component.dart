@@ -48,7 +48,7 @@ class TextBoxConfig {
 
 class TextBoxComponent<T extends TextRenderer> extends TextComponent {
   static final Paint _imagePaint = BasicPalette.white.paint()
-    ..filterQuality = FilterQuality.high;
+    ..filterQuality = FilterQuality.medium;
   final TextBoxConfig _boxConfig;
   final double pixelRatio;
 
@@ -282,7 +282,7 @@ class TextBoxComponent<T extends TextRenderer> extends TextComponent {
             (boxHeight - nLines * _lineHeight) * align.y +
             i * _lineHeight,
       );
-      textElement.render(canvas, position, anchor: anchor);
+      textElement.render(canvas, position);
 
       charCount += lines[i].length;
     }

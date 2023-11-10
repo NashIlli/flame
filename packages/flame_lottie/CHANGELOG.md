@@ -1,3 +1,24 @@
+## 0.3.0+3
+
+ - Update a dependency to the latest release.
+
+## 0.3.0+2
+
+ - **REFACTOR**: Remove unnecessary 'async' keyword across the codebase [DCM] ([#2803](https://github.com/flame-engine/flame/issues/2803)). ([2dfe0e5a](https://github.com/flame-engine/flame/commit/2dfe0e5a431213c7148ab6389e3e8c8dc49fbf3d))
+ - **FIX**: Duration in `LottieRenderer` rounds down milliseconds ([#2808](https://github.com/flame-engine/flame/issues/2808)). ([cccae2e1](https://github.com/flame-engine/flame/commit/cccae2e1476de456c15ee3779b746f5fe6dadee2))
+
+## 0.3.0+1
+
+ - Update a dependency to the latest release.
+
+## 0.3.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Enable DCM linting ([#2667](https://github.com/flame-engine/flame/issues/2667)). ([27a8fd61](https://github.com/flame-engine/flame/commit/27a8fd61cb7f62513e07a93ff61cf03b426353f2))
+ - **REFACTOR**: Fix lint issues across the codebase ([#2672](https://github.com/flame-engine/flame/issues/2672)). ([6fe9a247](https://github.com/flame-engine/flame/commit/6fe9a24778fbe1e9cb74ec0d50d71eae7b1a048e))
+ - **BREAKING** **FEAT**: Add CameraComponent to FlameGame ([#2740](https://github.com/flame-engine/flame/issues/2740)). ([7c2f4000](https://github.com/flame-engine/flame/commit/7c2f4000761580dbabb5d73b27f64d5819b34e8d))
+
 ## 0.2.1+1
 
  - Update a dependency to the latest release.

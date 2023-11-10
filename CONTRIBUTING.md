@@ -50,7 +50,7 @@ please read these instructions carefully.
 For a contribution to be accepted:
 
 - Follow the [Style Guide] when writing the code;
-- Format the code using `flutter format .`;
+- Format the code using `dart format .`;
 - Lint the code with `melos run analyze`;
 - Check that all tests pass: `melos run test`;
 - Documentation should always be updated or added (if applicable);
@@ -102,6 +102,26 @@ plugins, examples and tests to build from the local clone project. You should on
 command once.
 
 > You do not need to run `flutter pub get` once bootstrap has been completed.
+
+
+#### CSpell
+
+If you want to run the spellchecker locally, you will have to install
+[cspell](https://github.com/streetsidesoftware/cspell/tree/main/packages/cspell);
+you can do so using npm or yarn:
+
+```bash
+npm install -g cspell
+```
+
+Then you can run it with the following arguments:
+
+```bash
+cspell --no-progress -c .github/cspell.json "**/*.{md,dart}"
+```
+
+
+#### Markdown Lint
 
 If you want to lint the markdown files you have to install
 [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli) and once that is installed you

@@ -1,10 +1,12 @@
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
+import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/src/renderable_tile_map.dart';
 import 'package:flame_tiled/src/tile_atlas.dart';
+import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 import 'package:tiled/tiled.dart';
 
@@ -15,7 +17,7 @@ import 'package:tiled/tiled.dart';
 /// Sprite Batches.
 /// {@endtemplate}
 class TiledComponent<T extends FlameGame> extends PositionComponent
-    with HasGameRef<T> {
+    with HasGameReference<T> {
   /// Map instance of this component.
   RenderableTiledMap tileMap;
 
@@ -67,7 +69,7 @@ class TiledComponent<T extends FlameGame> extends PositionComponent
     super.onLoad();
     // Automatically use the first attached CameraComponent camera if it's not
     // already set..
-    tileMap.camera ??= gameRef.children.query<CameraComponent>().firstOrNull;
+    tileMap.camera ??= game.children.query<CameraComponent>().firstOrNull;
   }
 
   @override
@@ -104,6 +106,8 @@ class TiledComponent<T extends FlameGame> extends PositionComponent
     String prefix = 'assets/tiles/',
     int? priority,
     bool? ignoreFlip,
+    AssetBundle? bundle,
+    Images? images,
   }) async {
     return TiledComponent(
       await RenderableTiledMap.fromFile(
@@ -113,6 +117,8 @@ class TiledComponent<T extends FlameGame> extends PositionComponent
         atlasMaxY: atlasMaxY,
         ignoreFlip: ignoreFlip,
         prefix: prefix,
+        bundle: bundle,
+        images: images,
       ),
       priority: priority,
     );
